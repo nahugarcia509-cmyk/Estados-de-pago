@@ -1,0 +1,6 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "types": [] },
+  "include": ["supabase/functions/**/*.ts", "shared/**/*.ts", "tests/edge-globals.d.ts"],
+  "exclude": []
+}
