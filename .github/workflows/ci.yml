@@ -1,0 +1,27 @@
+name: Validate development
+on:
+  pull_request:
+  push:
+    branches: ['develop/**']
+permissions:
+  contents: read
+jobs:
+  local-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check
+      - run: node scripts/build-editor-function.mjs --check
+      - run: pnpm test
+      - run: pnpm test:db
+      - run: pnpm test:apps-script
+      - run: pnpm build
+      # Deliberately no deployment, remote migration or production credentials.
