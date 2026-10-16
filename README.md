@@ -4,6 +4,11 @@ Primera versión de desarrollo de una plataforma multiempresa para partes diario
 
 ## Usar desde GitHub y Vercel, sin VS Code
 
+En la pantalla de ingreso, **Ver demostración** permite recorrer dashboard, estado de pago,
+detalle diario y tarifas sin cuenta. Usa exclusivamente datos sintéticos incluidos en la aplicación,
+con filtros por empresa/equipo y sin operaciones sobre Supabase. Para datos reales sigue siendo
+obligatorio ingresar con una cuenta autorizada.
+
 **Empezar aquí: [Manual de Vercel y configuración desde el navegador](docs/VERCEL.md).**
 
 - [Apps Script: código e instalación paso a paso](docs/APPS_SCRIPT.md)

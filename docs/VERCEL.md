@@ -14,7 +14,10 @@ La conexión Vercel “Estado de pago” identifica la cuenta personal autorizad
 4. Framework: **Vite**. Root Directory: raíz del repositorio. Node.js: **24.x**. El archivo `vercel.json` define instalación, compilación y salida `dist`.
 5. Si el importador ofrece un primer despliegue de `main`, **no publicarlo**: `main` todavía no contiene la aplicación. Crear la conexión y usar el PR/rama de desarrollo para una **Preview**. Mantener `main` como Production Branch. No establecer `develop/edp-v1` como rama de producción.
 6. En el proyecto → **Deployments → Create Deployment** (o desplegar la rama desde la integración Git), elegir `develop/edp-v1` y entorno **Preview**. Verificar rama y commit antes de confirmar. Si el panel no permite crear la conexión sin despliegue inicial, completar este paso una vez que la cuenta conectada tenga permiso para que Codex cree explícitamente una Preview; no tomar un despliegue de producción como sustituto.
-7. Sin variables de Supabase se puede compilar y abrir la pantalla de instalación/ingreso; no permite autenticarse ni muestra datos inventados.
+7. Sin variables de Supabase se puede compilar y abrir la pantalla de instalación/ingreso.
+   Elegir **Ver demostración** para recorrer el dashboard y las pantallas con datos ficticios,
+   sin usuario ni contraseña. Los ejemplos están señalizados, son de solo lectura y no consultan Supabase.
+   Para operar con información real se requiere completar la conexión y autenticación.
 
 La configuración Git deshabilita despliegues automáticos de `main`. [Referencia oficial](https://vercel.com/docs/project-configuration/git-configuration). Esto no bloquea una publicación manual: no usar **Promote to Production** ni un despliegue manual de producción sin autorización.
 

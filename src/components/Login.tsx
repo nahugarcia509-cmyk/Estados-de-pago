@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { db, supabase } from '../lib/client';
-export function Login() {
+export function Login({ onDemo }: { onDemo: () => void }) {
   const [error, setError] = useState(''),
     [busy, setBusy] = useState(false);
   async function submit(e: FormEvent<HTMLFormElement>) {
@@ -40,8 +40,8 @@ export function Login() {
         <p>Ingresá con tu cuenta autorizada.</p>
         {!supabase && (
           <div className="notice">
-            Instalación pendiente: configurá la URL y clave pública del entorno de desarrollo. No
-            hay datos de demostración cargados.
+            La conexión real está pendiente de configuración. Podés recorrer la demostración sin
+            crear una cuenta.
           </div>
         )}
         <label>
@@ -61,6 +61,10 @@ export function Login() {
           {busy ? 'Ingresando…' : 'Ingresar a la plataforma'}
         </button>
         <small>Solicitá el acceso al administrador de tu empresa.</small>
+        <button type="button" className="secondary" onClick={onDemo}>
+          Ver demostración
+        </button>
+        <small>Sin usuario ni contraseña · Datos ficticios · Solo lectura</small>
       </form>
     </div>
   );

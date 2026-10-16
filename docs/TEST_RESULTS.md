@@ -16,7 +16,11 @@
 | Google → Edge desplegada → Supabase | No realizado                | Endpoint no desplegado y script no instalado                                                                                                                                                                      |
 | Vercel remoto                       | No realizado                | Alcance de proyectos devuelve HTTP 403                                                                                                                                                                            |
 
-Total: **82 pruebas/verificaciones locales aprobadas** (25 Vitest + 52 PostgreSQL + 5 Apps Script). El test de base usa PostgreSQL real embebido, pero no reproduce PostgREST, emisión/revocación JWT, proveedores de correo ni infraestructura Supabase remota.
+Total: **86 pruebas/verificaciones locales aprobadas** (29 Vitest + 52 PostgreSQL + 5 Apps Script). El test de base usa PostgreSQL real embebido, pero no reproduce PostgREST, emisión/revocación JWT, proveedores de correo ni infraestructura Supabase remota.
+
+## Demostración sin cuenta
+
+Se agregaron 4 pruebas de datos sintéticos: identificación ficticia, coherencia de filtros con importes, exclusión de pendientes y conciliación del consolidado. La demostración es de solo lectura y no importa servicios de Supabase. Su navegación visual aún no se verificó en navegador.
 
 ## Cobertura de base de datos
 

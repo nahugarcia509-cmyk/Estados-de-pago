@@ -28,6 +28,7 @@ import { periodFor, OPERATIONAL_TIMEZONE } from '../shared/domain';
 const Dashboard = lazy(() =>
   import('./components/Dashboard').then((m) => ({ default: m.Dashboard })),
 );
+const DemoWorkspace = lazy(() => import('./demo/DemoWorkspace'));
 const nav = [
   ['Dashboard general', LayoutDashboard, 'finance'],
   ['Estado de pago', FileText, 'finance'],
@@ -93,6 +94,7 @@ function CatalogTable({ rows, columns }: { rows: Catalog; columns: string[] }) {
   );
 }
 export function App() {
+  const [demo, setDemo] = useState(false);
   const [session, setSession] = useState<Session | null>(null),
     [ready, setReady] = useState(!supabase);
   useEffect(() => {
@@ -113,8 +115,18 @@ export function App() {
       data.subscription.unsubscribe();
     };
   }, []);
+  if (demo)
+    return (
+      <Suspense fallback={<div className="skeleton" aria-label="Cargando demostración" />}>
+        <DemoWorkspace onExit={() => setDemo(false)} />
+      </Suspense>
+    );
   if (!ready) return <div className="skeleton" aria-label="Cargando sesión" />;
-  return session ? <Workspace key={session.user.id} email={session.user.email ?? ''} /> : <Login />;
+  return session ? (
+    <Workspace key={session.user.id} email={session.user.email ?? ''} />
+  ) : (
+    <Login onDemo={() => setDemo(true)} />
+  );
 }
 function Workspace({ email }: { email: string }) {
   const [memberships, setMemberships] = useState<Membership[]>([]),
@@ -332,7 +344,7 @@ function Workspace({ email }: { email: string }) {
               Período contractual
               <input
                 type="month"
-              value={draft.to ? periodFor(draft.to).label : ''}
+                value={draft.to ? periodFor(draft.to).label : ''}
                 onChange={(e) => {
                   if (e.target.value) {
                     const p = periodFor(`${e.target.value}-25`);
